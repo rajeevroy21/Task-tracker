@@ -1,0 +1,61 @@
+# Task Tracker
+
+A simple task tracking application to help you manage personal or team tasks efficiently.
+
+## Features
+
+- Add new tasks
+- Mark tasks as complete/incomplete
+- Delete tasks
+- Filter or view task status
+- Keep track of task progress in one place
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (if using a JavaScript/Node app)
+- npm or yarn
+- A modern browser
+
+### Installation
+
+1. Clone the repository.
+2. Navigate to the project folder.
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the application:
+
+   ```bash
+   npm start
+   ```
+
+## Usage
+
+- Create tasks with titles and descriptions.
+- Update their progress as needed.
+- Remove completed or unnecessary tasks.
+- Use the UI to manage your daily workflow.
+
+## Project Structure
+
+```text
+project-root/
+├── src/
+├── public/
+├── package.json
+├── README
+└── ...
+```
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
