@@ -59,12 +59,12 @@ const getTasks = async (req, res) => {
       search,
       sort = "newest",
       page = 1,
-      limit = 10
+      limit = 5,
     } = req.query;
 
     // Base query
     const query = {
-      user: req.user._id
+      user: req.user._id,
     };
 
     // Filter by status
@@ -81,27 +81,8 @@ const getTasks = async (req, res) => {
     if (search) {
       query.title = {
         $regex: search,
-        $options: "i"
+        $options: "i",
       };
-    }
-
-    // Sorting
-    let sortOption = {};
-
-    if (sort === "newest") {
-      sortOption = { createdAt: -1 };
-    }
-
-    if (sort === "oldest") {
-      sortOption = { createdAt: 1 };
-    }
-
-    if (sort === "dueDate") {
-      sortOption = { dueDate: 1 };
-    }
-
-    if (sort === "priority") {
-      sortOption = { priority: -1 };
     }
 
     // Pagination
@@ -110,29 +91,116 @@ const getTasks = async (req, res) => {
 
     const skip = (pageNumber - 1) * limitNumber;
 
-    // Get tasks
-    const tasks = await Task.find(query)
-      .sort(sortOption)
-      .skip(skip)
-      .limit(limitNumber);
+    let tasks;
 
-    // Total matching tasks
+    // ===========================
+    // PRIORITY SORT
+    // High → Medium → Low
+    // ===========================
+
+    if (sort === "priority") {
+      tasks = await Task.aggregate([
+        {
+          $match: query,
+        },
+
+        {
+          $addFields: {
+            priorityOrder: {
+              $switch: {
+                branches: [
+                  {
+                    case: {
+                      $eq: ["$priority", "high"],
+                    },
+                    then: 1,
+                  },
+                  {
+                    case: {
+                      $eq: ["$priority", "medium"],
+                    },
+                    then: 2,
+                  },
+                  {
+                    case: {
+                      $eq: ["$priority", "low"],
+                    },
+                    then: 3,
+                  },
+                ],
+                default: 4,
+              },
+            },
+          },
+        },
+
+        {
+          $sort: {
+            priorityOrder: 1,
+          },
+        },
+
+        {
+          $skip: skip,
+        },
+
+        {
+          $limit: limitNumber,
+        },
+      ]);
+    } else {
+      // ===========================
+      // NORMAL SORTING
+      // ===========================
+
+      let sortOption = {};
+
+      if (sort === "newest") {
+        sortOption = {
+          createdAt: -1,
+        };
+      }
+
+      if (sort === "oldest") {
+        sortOption = {
+          createdAt: 1,
+        };
+      }
+
+      if (sort === "dueDate") {
+        sortOption = {
+          dueDate: 1,
+        };
+      }
+
+      tasks = await Task.find(query)
+        .sort(sortOption)
+        .skip(skip)
+        .limit(limitNumber);
+    }
+
+    // Total tasks
     const totalTasks = await Task.countDocuments(query);
 
     // Total pages
-    const totalPages = Math.ceil(totalTasks / limitNumber);
+    const totalPages = Math.ceil(
+      totalTasks / limitNumber
+    );
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       page: pageNumber,
       totalPages,
       totalTasks,
       count: tasks.length,
-      tasks
+      tasks,
     });
 
   } catch (error) {
-    next(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 
