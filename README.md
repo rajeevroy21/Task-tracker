@@ -283,7 +283,7 @@ GET /api/tasks?page=1&limit=5
 ---
 
 # 🎨 Design Decisions
-![alt text](image-1.jpg)
+![alt text](image.jpg)
 
 ## Component-Based Architecture
 
