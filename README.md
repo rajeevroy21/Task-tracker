@@ -95,7 +95,7 @@ task-tracker/
 ## 1. Clone the Repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone <https://github.com/rajeevroy21/Task-tracker.git>
 ```
 
 ## 2. Install Frontend Dependencies
@@ -336,7 +336,7 @@ The UI is designed using Tailwind CSS responsive utilities to support desktop, t
 
 **Frontend:** Add your deployed frontend link here
 
-**Backend API:** Add your deployed backend link here
+**Backend API:** https://task-tracker-backend-f3ei.onrender.com/
 
 ---
 
