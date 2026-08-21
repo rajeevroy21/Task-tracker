@@ -2,9 +2,7 @@ import { useState } from "react";
 import api from "../services/api";
 
 function useTasks() {
-  // =========================
   // STATE
-  // =========================
 
   const [tasks, setTasks] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
@@ -18,10 +16,7 @@ function useTasks() {
     totalTasks: 0,
   });
 
-  // =========================
-  // FETCH ALL TASKS
-  // FOR ANALYTICS
-  // =========================
+  // FETCH ALL TASKS FOR ANALYTICS
 
   const fetchAllTasks = async () => {
     try {
@@ -41,9 +36,7 @@ function useTasks() {
     }
   };
 
-  // =========================
   // FETCH PAGINATED TASKS
-  // =========================
 
   const fetchTasks = async (filters = {}) => {
     try {
@@ -72,9 +65,7 @@ function useTasks() {
     }
   };
 
-  // =========================
   // ADD TASK
-  // =========================
 
   const addTask = async (taskData) => {
     const response = await api.post(
@@ -85,9 +76,7 @@ function useTasks() {
     return response.data;
   };
 
-  // =========================
   // EDIT TASK
-  // =========================
 
   const editTask = async (id, taskData) => {
     const response = await api.put(
@@ -97,10 +86,7 @@ function useTasks() {
 
     return response.data;
   };
-
-  // =========================
   // DELETE TASK
-  // =========================
 
   const removeTask = async (id) => {
     const response = await api.delete(
@@ -110,21 +96,16 @@ function useTasks() {
     return response.data;
   };
 
-  // =========================
   // RETURN
-  // =========================
 
   return {
     tasks,
-    allTasks, // IMPORTANT
-
+    allTasks, 
     loading,
     error,
     pagination,
-
     fetchTasks,
     fetchAllTasks,
-
     addTask,
     editTask,
     removeTask,

@@ -30,15 +30,11 @@ function Dashboard() {
     removeTask,
   } = useTasks();
 
-  // =========================
   // UI STATE
-  // =========================
 
   const [activeTab, setActiveTab] = useState("tasks");
 
-  // =========================
   // FILTERS
-  // =========================
 
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
@@ -48,9 +44,7 @@ function Dashboard() {
   // Pagination
   const [page, setPage] = useState(1);
 
-  // =========================
   // MODAL
-  // =========================
 
   const [showForm, setShowForm] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
@@ -59,9 +53,7 @@ function Dashboard() {
     localStorage.getItem("user") || "{}"
   );
 
-  // =========================
   // FETCH PAGINATED TASKS
-  // =========================
 
   useEffect(() => {
     if (activeTab !== "tasks") return;
@@ -86,11 +78,7 @@ function Dashboard() {
     sort,
     page,
   ]);
-
-  // =========================
-  // FETCH ALL TASKS
-  // FOR ANALYTICS
-  // =========================
+  // FETCH ALL TASKS FOR ANALYTICS 
 
   useEffect(() => {
     if (activeTab === "analytics") {
@@ -98,47 +86,36 @@ function Dashboard() {
     }
   }, [activeTab]);
 
-  // =========================
   // LOGOUT
-  // =========================
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-
     navigate("/");
   };
 
-  // =========================
   // NEW TASK
-  // =========================
 
   const handleNewTask = () => {
     setEditingTask(null);
     setShowForm(true);
   };
 
-  // =========================
   // EDIT TASK
-  // =========================
 
   const handleEdit = (task) => {
     setEditingTask(task);
     setShowForm(true);
   };
 
-  // =========================
   // CLOSE FORM
-  // =========================
 
   const handleCloseForm = () => {
     setEditingTask(null);
     setShowForm(false);
   };
 
-  // =========================
   // CREATE / UPDATE TASK
-  // =========================
 
   const handleSubmit = async (formData) => {
     try {
@@ -177,9 +154,7 @@ function Dashboard() {
     }
   };
 
-  // =========================
   // DELETE TASK
-  // =========================
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this task?")) {
@@ -202,9 +177,7 @@ function Dashboard() {
     fetchAllTasks();
   };
 
-  // =========================
   // COMPLETE / UNDO
-  // =========================
 
   const handleToggleStatus = async (task) => {
     const newStatus =
@@ -314,11 +287,6 @@ function Dashboard() {
         )}
 
       </main>
-
-      {/* =========================
-          TASK FORM MODAL
-      ========================== */}
-
       {showForm && (
         <TaskForm
           task={editingTask}

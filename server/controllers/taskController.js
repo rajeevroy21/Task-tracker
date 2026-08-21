@@ -1,8 +1,6 @@
 const Task = require("../models/Task");
 
-// ===========================
 // CREATE TASK
-// ===========================
 
 const createTask = async (req, res) => {
   try {
@@ -46,10 +44,7 @@ const createTask = async (req, res) => {
   }
 };
 
-// ===========================
 // GET ALL TASKS
-// SEARCH + FILTER + SORT + PAGINATION
-// ===========================
 
 const getTasks = async (req, res) => {
   try {
@@ -92,11 +87,8 @@ const getTasks = async (req, res) => {
     const skip = (pageNumber - 1) * limitNumber;
 
     let tasks;
-
-    // ===========================
     // PRIORITY SORT
     // High → Medium → Low
-    // ===========================
 
     if (sort === "priority") {
       tasks = await Task.aggregate([
@@ -204,9 +196,7 @@ const getTasks = async (req, res) => {
   }
 };
 
-// ===========================
 // GET SINGLE TASK
-// ===========================
 
 const getTaskById = async (req, res) => {
   try {
@@ -235,9 +225,7 @@ const getTaskById = async (req, res) => {
   }
 };
 
-// ===========================
 // UPDATE TASK
-// ===========================
 
 const updateTask = async (req, res) => {
   try {
@@ -285,9 +273,7 @@ const updateTask = async (req, res) => {
   }
 };
 
-// ===========================
 // DELETE TASK
-// ===========================
 
 const deleteTask = async (req, res) => {
   try {

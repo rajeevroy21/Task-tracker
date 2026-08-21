@@ -1,9 +1,5 @@
 const Task = require("../models/Task");
-
-// ===========================
 // GET TASK ANALYTICS
-// ===========================
-
 const getAnalytics = async (req, res) => {
   try {
     // Get total tasks

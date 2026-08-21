@@ -13,9 +13,7 @@ const generateToken = (id) => {
   );
 };
 
-// =======================
 // LOGIN
-// =======================
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -72,9 +70,9 @@ const login = async (req, res) => {
     });
   }
 };
-// =======================
+
+
 // SIGNUP
-// =======================
 
 const signup = async (req, res) => {
   try {
