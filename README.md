@@ -340,6 +340,16 @@ The UI is designed using Tailwind CSS responsive utilities to support desktop, t
 
 ---
 
+## 🔑 Demo Account
+
+Use the following demo credentials to test the application:
+
+**Email:** `rajeevroy70701@gmail.com`
+
+**Password:** `rajeevroy70701`
+
+---
+
 # 👨‍💻 Author
 
 **Rajeev Kumar**
