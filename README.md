@@ -334,7 +334,7 @@ The UI is designed using Tailwind CSS responsive utilities to support desktop, t
 
 # 🌐 Live Demo
 
-**Frontend:** Add your deployed frontend link here
+**Frontend:** https://task-tracker-silk-seven.vercel.app/
 
 **Backend API:** https://task-tracker-backend-f3ei.onrender.com/
 
