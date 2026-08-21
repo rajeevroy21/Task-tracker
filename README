@@ -1,4 +1,4 @@
-# 🚀 TaskFlow - Full Stack Task Tracker
+## 🚀 TaskFlow - Full Stack Task Tracker
 
 A full-stack Task Management application built with React, Node.js, Express, and MongoDB. Users can securely manage their tasks with authentication, search, filters, sorting, pagination, analytics, and dark mode.
 
@@ -68,6 +68,27 @@ task-tracker/
 ```
 
 ---
+# 📁 Project Architecture
+
+```text
+                    TaskFlow
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+       Frontend                  Backend
+          │                         │
+   React + Tailwind          Node + Express
+          │                         │
+    ┌─────┼─────┐            ┌──────┼──────┐
+    │     │     │            │      │      │
+  Pages Components Hooks  Routes Controllers Models
+    │                       │
+    │                    Middleware
+    │                       │
+    └────────── API ────────┘
+                            │
+                         MongoDB
+```
 
 # ⚙️ Setup Steps
 
@@ -262,6 +283,7 @@ GET /api/tasks?page=1&limit=5
 ---
 
 # 🎨 Design Decisions
+![alt text](image-1.jpg)
 
 ## Component-Based Architecture
 
